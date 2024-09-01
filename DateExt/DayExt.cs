@@ -7,9 +7,9 @@ public static class DayExt
     /// <summary>
     /// Subtract the specified number of days from the given date.
     /// <example><code>
-    /// // Subtract 10 days from 31 august 2024?
+    /// // Subtract 10 days from 31 august, 2024?
     /// var result = new DateTime(2024, 8, 31).SubtractDays(10);
-    /// // 21 august 2024 -> 8/21/2024 12:00:00 AM
+    /// // 21 august, 2024 -> 8/21/2024 12:00:00 AM
     /// </code></example>
     /// </summary>
     /// <param name="dateTime">The date to be changed</param>
@@ -43,7 +43,7 @@ public static class DayExt
     /// Return the start of a day for the given date.
     /// <example>
     /// <code>
-    /// //The start of a day for 31 August 2024 06:00:00
+    /// //The start of a day for 31 August, 2024 06:00:00
     /// var result = new DateTime(2024, 8, 31, 6,0,0).StartOfDay();
     /// // -> 8/31/2024 12:00:00 AM
     /// </code>
@@ -52,4 +52,29 @@ public static class DayExt
     /// <param name="dateTime">The original date</param>
     /// <returns>The start of a day</returns>
     public static DateTime StartOfDay(this DateTime dateTime) => dateTime.Date;
+    /// <summary>
+    /// Get the number of calendar days between the given dates. This means that times are removed 
+    /// from the dates and then the difference in days is calculated.
+    /// <example><code>
+    /// // How many calendar days are between
+    /// // 31 august, 2024 06:00:00 and 30 august, 2024 00:00:00
+    /// var res = new DateTime(2024, 8, 31, 6, 0, 0).DifferenceInCalendarDays(new DateTime(2024, 8, 30));
+    /// // -> 1
+    /// 
+    /// // How many calendar days are between
+    /// // 31 august, 2024 06:00:00 and 31 august, 2023 00:00:00
+    /// var res = new DateTime(2024, 8, 31, 6, 0, 0).DifferenceInCalendarDays(new DateTime(2023, 8, 31));
+    /// // -> 366
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTimeLeft">The later date</param>
+    /// <param name="dateTimeRight">The earlier date</param>
+    /// <returns>The nuber of calendar days</returns>
+    public static int DifferenceInCalendarDays(this DateTime dateTimeLeft, DateTime dateTimeRight)
+    {
+        DateTime startOfDayLeft = dateTimeLeft.StartOfDay();
+        DateTime startOfDayRight = dateTimeRight.StartOfDay();
+        TimeSpan diff = startOfDayLeft - startOfDayRight;
+        return diff.Days;
+    }
 }
