@@ -177,10 +177,8 @@ public static class DayExt
     /// </summary>
     /// <param name="dateTime"><see cref="DateTime.Today"/></param>
     /// <returns>The end of <see cref="DateTime.Today"/></returns>
-    public static DateTime EndOfToday(this DateTime dateTime)
-    {
-        return dateTime.EndOfDay();
-    }
+    public static DateTime EndOfToday(this DateTime dateTime) => dateTime.EndOfDay();
+
     /// <summary>
     /// Return the end of tomorrow.
     /// <example><code>
@@ -192,5 +190,5 @@ public static class DayExt
     /// <param name="dateTime"></param>
     /// <returns></returns>
     public static DateTime EndOfTomorrow(this DateTime dateTime) => dateTime.AddDays(1).EndOfDay();
-    
+
 }
