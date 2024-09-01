@@ -181,4 +181,16 @@ public static class DayExt
     {
         return dateTime.EndOfDay();
     }
+    /// <summary>
+    /// Return the end of tomorrow.
+    /// <example><code>
+    /// // If today is 1 September, 2024
+    /// var result = DateTime.Today.EndOfTomorrow();
+    /// // -> 9/2/2024 11:59:59 PM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns></returns>
+    public static DateTime EndOfTomorrow(this DateTime dateTime) => dateTime.AddDays(1).EndOfDay();
+    
 }
