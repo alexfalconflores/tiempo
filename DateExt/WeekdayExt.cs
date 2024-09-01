@@ -206,5 +206,163 @@ public static class WeekdayExt
     /// <param name="dateTime">The date to start counting from</param>
     /// <returns>The next Saturday</returns>
     public static DateTime NextSaturday(this DateTime dateTime) => dateTime.NextDay(DayOfWeek.Saturday);
-
+    /// <summary>
+    /// When is the previous day of the week? <see cref="DayOfWeek"/> the day of the week.
+    /// <example>
+    /// <code>
+    /// // When is the previous Monday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousDay(DayOfWeek.Monday);
+    /// // 26 august 2024 -> 8/26/2024 12:00:00 AM
+    /// 
+    /// // When is the previous Thursday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousDay(DayOfWeek.Thursday);
+    /// // 29 august 2024 -> 8/29/2024 12:00:00 AM
+    /// </code>
+    /// </example>
+    /// </summary>
+    /// <param name="dateTime">The day to check</param>
+    /// <param name="dayOfWeek">Day of the week</param>
+    /// <returns>The date is the previous day of week.</returns>
+    public static DateTime PreviousDay(this DateTime dateTime, DayOfWeek dayOfWeek)
+    {
+        int delta = dateTime.DayOfWeek - dayOfWeek;
+        if (delta <= 0) delta += 7;
+        return dateTime.SubtractDays(delta);
+    }
+    /// <summary>
+    /// When is the previous day of the week? 0-6 the day o the week, 0 represents Sunday.
+    /// <example>
+    /// <code>
+    /// // When is the previous Monday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousDay(1);
+    /// // 26 august 2024 -> 8/26/2024 12:00:00 AM
+    /// 
+    /// // When is the previous Thursday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousDay(4);
+    /// // 29 august 2024 -> 8/29/2024 12:00:00 AM
+    /// 
+    /// // When is the previous Thursday after 31 august 2024? 
+    /// var result = new DateTime(2024, 8, 31).PreviousDay(-5); // Wrong day of the week
+    /// // 31 august 2024 -> 8/31/2024 12:00:00 AM
+    /// </code>
+    /// </example>
+    /// </summary>
+    /// <param name="dateTime">The day to check</param>
+    /// <param name="dayOfWeek">Day of the week</param>
+    /// <returns>The date is the previous day of week.
+    /// If <paramref name="dayOfWeek"/> is less than 0 or greater than 6, the original date is returned.
+    /// </returns>
+    public static DateTime PreviousDay(this DateTime dateTime, int dayOfWeek)
+    {
+        if (dayOfWeek is > 6 or < 0) return dateTime;
+        int delta = dateTime.GetDayOfWeek() - dayOfWeek;
+        if (delta <= 0) delta += 7;
+        return dateTime.SubtractDays(delta);
+    }
+    /// <summary>
+    /// When is the previous Sunday?
+    /// <example><code>
+    /// // When is the previous Sunday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousSunday();
+    /// // 25 august 2024 -> 8/25/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to start counting from</param>
+    /// <returns>The previous Friday</returns>
+    public static DateTime PreviousSunday(this DateTime dateTime) => dateTime.PreviousDay(DayOfWeek.Sunday);
+    /// <summary>
+    /// When is the previous Monday?
+    /// <example><code>
+    /// // When is the previous Monday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousMonday();
+    /// // 26 august 2024 -> 8/26/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to start counting from</param>
+    /// <returns>The previous Monday</returns>
+    public static DateTime PreviousMonday(this DateTime dateTime) => dateTime.PreviousDay(DayOfWeek.Monday);
+    /// <summary>
+    /// When is the previous Tuesday?
+    /// <example><code>
+    /// // When is the previous Tuesday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousTuesday();
+    /// // 27 august 2024 -> 8/27/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to start counting from</param>
+    /// <returns>The previous Tuesday</returns>
+    public static DateTime PreviousTuesday(this DateTime dateTime) => dateTime.PreviousDay(DayOfWeek.Tuesday);
+    /// <summary>
+    /// When is the previous Wednesday?
+    /// <example><code>
+    /// // When is the previous Wednesday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousWednesday();
+    /// // 28 august 2024 -> 8/28/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to start counting from</param>
+    /// <returns>The previous Wednesday</returns>
+    public static DateTime PreviousWednesday(this DateTime dateTime) => dateTime.PreviousDay(DayOfWeek.Wednesday);
+    /// <summary>
+    /// When is the previous Thursday?
+    /// <example><code>
+    /// // When is the previous Thursday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousThursday();
+    /// // 29 august 2024 -> 8/29/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to start counting from</param>
+    /// <returns>The previous Thursday</returns>
+    public static DateTime PreviousThursday(this DateTime dateTime) => dateTime.PreviousDay(DayOfWeek.Thursday);
+    /// <summary>
+    /// When is the previous Friday?
+    /// <example><code>
+    /// // When is the previous Friday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousFriday();
+    /// // 30 august 2024 -> 8/30/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to start counting from</param>
+    /// <returns>The previous Friday</returns>
+    public static DateTime PreviousFriday(this DateTime dateTime) => dateTime.PreviousDay(DayOfWeek.Friday);
+    /// <summary>
+    /// When is the previous Saturday?
+    /// <example><code>
+    /// // When is the previous Saturday after 31 august 2024?
+    /// var result = new DateTime(2024, 8, 31).PreviousSaturday();
+    /// // 24 august 2024 -> 8/24/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to start counting from</param>
+    /// <returns>The previous Saturday</returns>
+    public static DateTime PreviousSaturday(this DateTime dateTime) => dateTime.PreviousDay(DayOfWeek.Saturday);
+    /// <summary>
+    /// Set the day of the week to the given date.
+    /// <example><code>
+    /// // Set week day to Sunday, with the default weekStartsOn of Sunday:
+    /// var result = new DateTime(2024, 8, 31).SetDayOfWeek(DayOfWeek.Sunday);
+    /// // 25 august 2024 -> 8/25/2024 12:00:00 AM
+    /// 
+    /// // Set week day to Sunday, with a weekStartsOn of Monday:
+    /// var result = new DateTime(2024, 8, 31).SetDayOfWeek(DayOfWeek.Sunday, DayOfWeek.Monday);
+    /// // 1 september 2024 -> 9/1/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to be changed</param>
+    /// <param name="dayOfWeek">The day of the week of the new <see cref="DateTime"/></param>
+    /// <param name="weekStartsOn">Which day the week starts on. Default is <see cref="DayOfWeek.Sunday"/></param>
+    /// <returns>The new <see cref="DateTime"/> with the day of the week set</returns>
+    public static DateTime SetDayOfWeek(this DateTime dateTime, DayOfWeek dayOfWeek, DayOfWeek weekStartsOn = DayOfWeek.Sunday)
+    {
+        int dayOfWeekCode = dayOfWeek.GetHashCode();
+        int weekStartsOnCode = weekStartsOn.GetHashCode();
+        int currentDay = dateTime.GetDayOfWeek();
+        int remainder = dayOfWeekCode % 7;
+        int dayIndex = (remainder + 7) % 7;
+        int delta = 7 - weekStartsOnCode;
+        int diff = dayOfWeekCode is < 0 or > 6
+            ? dayOfWeekCode - ((currentDay + delta) % 7)
+            : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7);
+        return dateTime.AddDays(diff);
+    }
 }
