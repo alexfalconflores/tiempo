@@ -126,4 +126,35 @@ public static class DayExt
 
         return isNegative ? -businessDays : businessDays;
     }
+    /// <summary>
+    /// Get the number of full days between the given dates. One "full day" is the distance between
+    /// a local time in one day to the same local time on the next or previous day. A full day can sometimes
+    /// be less than or more than 24 hours if a daylight savings change happens between two dates.
+    /// <example><code>
+    /// // How many full days are between
+    /// 2 July, 2011 23:00:00 and 2 July, 2012 00:00:00?
+    /// var result = new DateTime(2012, 7,2, 0, 0, 0).DifferenceInDays(new DateTime(2011, 7, 2, 23, 0, 0));
+    /// // -> 365
+    /// 
+    /// // How many full days are between
+    /// 2 July, 2011 23:59:00 and 3 July, 2011 00:01:00?
+    /// var result = new DateTime(2011, 7, 3, 0, 1, 0).DifferenceInDays(new DateTime(2011, 7, 2, 23, 59, 0));
+    /// // -> 0
+    /// 
+    /// // How many full days are between
+    /// 1 March, 2020 00:00 and 1 June, 2020 00:00?
+    /// var result = new DateTime(2020, 6, 1, 0, 0, 0).DifferenceInDays(new DateTime(2020, 3, 1, 0, 0, 0));
+    /// // -> 92
+    /// </code></example>
+    /// <example><code>
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTimeLeft">The later date</param>
+    /// <param name="dateTimeRight">The earlier date</param>
+    /// <returns>The number of full days according to the local timezone</returns>
+    public static int DifferenceInDays(this DateTime dateTimeLeft, DateTime dateTimeRight) { 
+        return (dateTimeLeft - dateTimeRight).Days;
+    }
+
+    
 }
