@@ -266,10 +266,10 @@ public static class DayExt
     public static DateTime SetDayOfYear(this DateTime dateTime, int dayOfYear)
     {
         int year = dateTime.Year;
-        if (dayOfYear < 1) dayOfYear = 1;
         bool isLeapYear = DateTime.IsLeapYear(year);
         int maxDays = isLeapYear ? 366 : 365;
-        if (dayOfYear > maxDays) dayOfYear = maxDays;
+        dayOfYear = Math.Max(1, Math.Min(dayOfYear, maxDays));
+        if (dateTime.DayOfYear == dayOfYear) return dateTime;
 
         int[] daysToMonth = isLeapYear
         ? [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366]  // Año bisiesto
@@ -279,6 +279,6 @@ public static class DayExt
         while (dayOfYear > daysToMonth[month]) month++;
         int day = dayOfYear - daysToMonth[month - 1];
 
-        return new DateTime(year, month, day);
+        return new DateTime(year, month, day, dateTime.Hour, dateTime.Minute, dateTime.Second);
     }
 }
