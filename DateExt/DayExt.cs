@@ -214,7 +214,7 @@ public static class DayExt
     /// <summary>
     /// Is the given date tomorrow?
     /// <example><code>
-    /// // If today is 1 September, 2024, is 2 September, 2024 11:55:00 tomorrow?
+    /// // If today is 1 September, 2024, is 2 September, 2024 06:00:00 tomorrow?
     /// var result = new DateTime(2024, 9, 2, 6, 0, 0).IsTomorrow();
     /// // -> True
     /// </code></example>
@@ -222,4 +222,15 @@ public static class DayExt
     /// <param name="dateTime"></param>
     /// <returns>The date is tomorrow</returns>
     public static bool IsTomorrow(this DateTime dateTime) => DateTime.Today.AddDays(1).IsSameDay(dateTime);
+    /// <summary>
+    /// Is the given date yesterday?
+    /// <example><code>
+    /// // If today is 1 September, 2024, is 31 August, 2024 06:00:00 tomorrow?
+    /// var result = new DateTime(2024, 9, 2, 6, 0, 0).IsYesterday();
+    /// // -> True
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns>The date is yesterday</returns>
+    public static bool IsYesterday(this DateTime dateTime) => DateTime.Today.SubtractDays(1).IsSameDay(dateTime);
 }
