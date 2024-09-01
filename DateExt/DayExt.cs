@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
 
 namespace DateExt;
 
@@ -314,4 +311,47 @@ public static class DayExt
     /// <param name="dateTime"><see cref="DateTime.Today"/></param>
     /// <returns>The start of yesterday</returns>
     public static DateTime StartOfYesterday(this DateTime dateTime) => dateTime.SubtractDays(1).StartOfDay();
+    /// <summary>
+    /// Add the specified number of business days (monday - friday) to the given date, ignoraring weekends.
+    /// <example><code>
+    /// //Add 10 business days to 1 September, 2024
+    /// var result = new DateTime(2024, 9, 1, 6, 0, 0).AddBusinessDays(10);
+    /// // -> 9/16/2024 6:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to be changed</param>
+    /// <param name="amount">The amount of business days to be added.</param>
+    /// <returns>The new <see cref="DateTime"/> with the business days added</returns>
+    public static DateTime AddBusinessDays(this DateTime dateTime, int amount)
+    {
+        if (amount == 0) return dateTime;
+        long ticks = dateTime.Ticks;
+        int sign = amount < 0 ? -1 : 1;
+        int absAmount = Math.Abs(amount);
+        int fullWeeks = absAmount / 5;
+        ticks += fullWeeks * 7 * TimeSpan.TicksPerDay * sign;
+        int restDays = absAmount % 5;
+        while (restDays > 0)
+        {
+            ticks += TimeSpan.TicksPerDay * sign;
+            DayOfWeek dayOfWeek = (DayOfWeek)((ticks / TimeSpan.TicksPerDay + 1) % 7);
+            if (dayOfWeek != DayOfWeek.Saturday && dayOfWeek != DayOfWeek.Sunday) restDays--;
+        }
+        DayOfWeek finalDayOfWeek = (DayOfWeek)((ticks / TimeSpan.TicksPerDay + 1) % 7);
+        if (finalDayOfWeek == DayOfWeek.Saturday) ticks += TimeSpan.TicksPerDay * 2 * sign;
+        else if (finalDayOfWeek == DayOfWeek.Sunday) ticks += TimeSpan.TicksPerDay * sign;
+        return new DateTime(ticks);
+    }
+    /// <summary>
+    /// Subtract the specified number of business days (monday - friday) to the given date, ignoring weekends.
+    /// <example><code>
+    /// // Subtract 10 business days from 1 September, 2024
+    /// var result = new DateTime(2024, 9, 1, 6, 0, 0).SubtractBusinessDays(10);
+    /// // -> 8/17/2024 6:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to be changed</param>
+    /// <param name="amount">The amount of business days to be subtracted</param>
+    /// <returns>The new <see cref="DateTime"/> with the business days subtracted</returns>
+    public static DateTime SubtractBusinessDays(this DateTime dateTime, int amount) => dateTime.AddBusinessDays(-amount);
 }
