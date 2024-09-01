@@ -154,11 +154,7 @@ public static class DayExt
     /// <param name="dateTimeLeft">The later date</param>
     /// <param name="dateTimeRight">The earlier date</param>
     /// <returns>The number of full days according to the local timezone</returns>
-    public static int DifferenceInDays(this DateTime dateTimeLeft, DateTime dateTimeRight)
-    {
-        return (dateTimeLeft - dateTimeRight).Days;
-    }
-
+    public static int DifferenceInDays(this DateTime dateTimeLeft, DateTime dateTimeRight) => (dateTimeLeft - dateTimeRight).Days;
     /// <summary>
     /// Return the end of a day for the given date.
     /// <example><code>
@@ -170,10 +166,7 @@ public static class DayExt
     /// <param name="dateTime">The original <see cref="DateTime"/></param>
     /// <returns>The end of a day</returns>
     public static DateTime EndOfDay(this DateTime dateTime)
-    {
-        return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, 999, dateTime.Kind);
-    }
-
+        => new(dateTime.Year, dateTime.Month, dateTime.Day, 23, 59, 59, 999, dateTime.Kind);
     /// <summary>
     /// Return the end of <see cref="DateTime.Today"/>.
     /// <example><code>
