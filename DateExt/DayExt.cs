@@ -244,10 +244,13 @@ public static class DayExt
     /// <param name="dateTime">The date to be changed</param>
     /// <param name="dayOfMonth">The day of the month of the new <see cref="DateTime"/></param>
     /// <returns>The new <see cref="DateTime"/> with the day of the month set</returns>
-    public static DateTime SetDay(this DateTime dateTime, int dayOfMonth)
+    public static DateTime SetDay(this DateTime dateTime, int dayOfMonth = 1)
     {
-        if (dayOfMonth is < 1) dayOfMonth = 1;
-        return new DateTime(dateTime.Year, dateTime.Month, dayOfMonth, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond, dateTime.Kind);
+        int daysInMonth = DateTime.DaysInMonth(dateTime.Year, dateTime.Month);
+        dayOfMonth = Math.Max(1, Math.Min(dayOfMonth, daysInMonth));
+        return dateTime.Day == dayOfMonth
+            ? dateTime
+            : new DateTime(dateTime.Year, dateTime.Month, dayOfMonth, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond, dateTime.Kind);
     }
     /// <summary>
     /// Set the day of the year to the given date.
@@ -266,16 +269,16 @@ public static class DayExt
         if (dayOfYear < 1) dayOfYear = 1;
         bool isLeapYear = DateTime.IsLeapYear(year);
         int maxDays = isLeapYear ? 366 : 365;
-        if(dayOfYear > maxDays) dayOfYear = maxDays;
+        if (dayOfYear > maxDays) dayOfYear = maxDays;
 
         int[] daysToMonth = isLeapYear
         ? [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366]  // Año bisiesto
         : [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]; // Año no bisiesto
 
         int month = 1;
-        while(dayOfYear > daysToMonth[month]) month++;
+        while (dayOfYear > daysToMonth[month]) month++;
         int day = dayOfYear - daysToMonth[month - 1];
 
-        return new DateTime(year, month,day);
+        return new DateTime(year, month, day);
     }
 }
