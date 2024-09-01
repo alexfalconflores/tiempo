@@ -225,7 +225,7 @@ public static class DayExt
     /// <summary>
     /// Is the given date yesterday?
     /// <example><code>
-    /// // If today is 1 September, 2024, is 31 August, 2024 06:00:00 tomorrow?
+    /// // If today is 1 September, 2024, is 31 August, 2024 06:00:00 yesterday?
     /// var result = new DateTime(2024, 9, 2, 6, 0, 0).IsYesterday();
     /// // -> True
     /// </code></example>
@@ -236,7 +236,7 @@ public static class DayExt
     /// <summary>
     /// Set the day of the month to the given date.
     /// <example><code>
-    /// // Set the 10th day of the month to 31 August, 2024 06:00:00 tomorrow?
+    /// // Set the 10th day of the month to 31 August, 2024 06:00:00
     /// var result = new DateTime(2024, 8, 31, 6, 0, 0).SetDay(10);
     /// // -> 8/10/2024 6:00:00 AM
     /// </code></example>
@@ -248,5 +248,34 @@ public static class DayExt
     {
         if (dayOfMonth is < 1) dayOfMonth = 1;
         return new DateTime(dateTime.Year, dateTime.Month, dayOfMonth, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond, dateTime.Kind);
+    }
+    /// <summary>
+    /// Set the day of the year to the given date.
+    /// <example><code>
+    /// // Set the 2nd day of the year to 31 August, 2024 06:00:00
+    /// var result = new DateTime(2024, 8, 31, 6, 0, 0).SetDay(2);
+    /// // -> 1/2/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to be changed</param>
+    /// <param name="dayOfMonth">The day of the year of the new <see cref="DateTime"/></param>
+    /// <returns>The new <see cref="DateTime"/> with the day of the year set</returns>
+    public static DateTime SetDayOfYear(this DateTime dateTime, int dayOfYear)
+    {
+        int year = dateTime.Year;
+        if (dayOfYear < 1) dayOfYear = 1;
+        bool isLeapYear = DateTime.IsLeapYear(year);
+        int maxDays = isLeapYear ? 366 : 365;
+        if(dayOfYear > maxDays) dayOfYear = maxDays;
+
+        int[] daysToMonth = isLeapYear
+        ? [0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335, 366]  // Año bisiesto
+        : [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365]; // Año no bisiesto
+
+        int month = 1;
+        while(dayOfYear > daysToMonth[month]) month++;
+        int day = dayOfYear - daysToMonth[month - 1];
+
+        return new DateTime(year, month,day);
     }
 }
