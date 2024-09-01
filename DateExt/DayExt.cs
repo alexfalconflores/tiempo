@@ -198,7 +198,7 @@ public static class DayExt
     /// </code></example>
     /// </summary>
     /// <param name="dateTime"><see cref="DateTime.Today"/></param>
-    /// <returns>The ed of yesterday</returns>
+    /// <returns>The end of yesterday</returns>
     public static DateTime EndOfYesterday(this DateTime dateTime) => dateTime.SubtractDays(1).EndOfDay();
     /// <summary>
     /// Is the given date today?
@@ -281,4 +281,37 @@ public static class DayExt
 
         return new DateTime(year, month, day, dateTime.Hour, dateTime.Minute, dateTime.Second);
     }
+    /// <summary>
+    /// Return the start of <see cref="DateTime.Today"/>.
+    /// <example><code>
+    /// // If today is 1 September, 2024
+    /// var result = DateTime.Today.StartOfToday();
+    /// // -> 9/1/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime"><see cref="DateTime.Today"/></param>
+    /// <returns>The start of <see cref="DateTime.Today"/></returns>
+    public static DateTime StartOfToday(this DateTime dateTime) => dateTime.StartOfDay();
+    /// <summary>
+    /// Return the start of tomorrow.
+    /// <example><code>
+    /// // If today is 1 September, 2024
+    /// var result = DateTime.Today.StartOfTomorrow();
+    /// // -> 9/2/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime"><see cref="DateTime.Today"/></param>
+    /// <returns>The start of tomorrow</returns>
+    public static DateTime StartOfTomorrow(this DateTime dateTime) => dateTime.AddDays(1).StartOfDay();
+    /// <summary>
+    /// Return the start of yesterday.
+    /// <example><code>
+    /// // If today is 1 September, 2024
+    /// var result = DateTime.Today.EndOfTomorrow();
+    /// // -> 8/31/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime"><see cref="DateTime.Today"/></param>
+    /// <returns>The start of yesterday</returns>
+    public static DateTime StartOfYesterday(this DateTime dateTime) => dateTime.SubtractDays(1).StartOfDay();
 }
