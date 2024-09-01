@@ -178,7 +178,6 @@ public static class DayExt
     /// <param name="dateTime"><see cref="DateTime.Today"/></param>
     /// <returns>The end of <see cref="DateTime.Today"/></returns>
     public static DateTime EndOfToday(this DateTime dateTime) => dateTime.EndOfDay();
-
     /// <summary>
     /// Return the end of tomorrow.
     /// <example><code>
@@ -190,7 +189,6 @@ public static class DayExt
     /// <param name="dateTime"><see cref="DateTime.Today"/></param>
     /// <returns>The end of tomorrow</returns>
     public static DateTime EndOfTomorrow(this DateTime dateTime) => dateTime.AddDays(1).EndOfDay();
-
     /// <summary>
     /// Return the end of yesterday.
     /// <example><code>
@@ -202,5 +200,26 @@ public static class DayExt
     /// <param name="dateTime"><see cref="DateTime.Today"/></param>
     /// <returns>The ed of yesterday</returns>
     public static DateTime EndOfYesterday(this DateTime dateTime) => dateTime.SubtractDays(1).EndOfDay();
-
+    /// <summary>
+    /// Is the given date today?
+    /// <example><code>
+    /// // If today is 1 September, 2024, is 1 September, 2024 11:55:00 today?
+    /// var result = new DateTime(2024, 9, 1, 11,55,0).IsToday();
+    /// // -> True
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns>The date to check</returns>
+    public static bool IsToday(this DateTime dateTime) => DateTime.Today.IsSameDay(dateTime);
+    /// <summary>
+    /// Is the given date tomorrow?
+    /// <example><code>
+    /// // If today is 1 September, 2024, is 2 September, 2024 11:55:00 tomorrow?
+    /// var result = new DateTime(2024, 9, 2, 6, 0, 0).IsTomorrow();
+    /// // -> True
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <returns>The date is tomorrow</returns>
+    public static bool IsTomorrow(this DateTime dateTime) => DateTime.Today.AddDays(1).IsSameDay(dateTime);
 }
