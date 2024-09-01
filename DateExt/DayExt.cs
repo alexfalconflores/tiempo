@@ -233,4 +233,20 @@ public static class DayExt
     /// <param name="dateTime"></param>
     /// <returns>The date is yesterday</returns>
     public static bool IsYesterday(this DateTime dateTime) => DateTime.Today.SubtractDays(1).IsSameDay(dateTime);
+    /// <summary>
+    /// Set the day of the month to the given date.
+    /// <example><code>
+    /// // Set the 10th day of the month to 31 August, 2024 06:00:00 tomorrow?
+    /// var result = new DateTime(2024, 8, 31, 6, 0, 0).SetDay(10);
+    /// // -> 8/10/2024 6:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date to be changed</param>
+    /// <param name="dayOfMonth">The day of the month of the new <see cref="DateTime"/></param>
+    /// <returns>The new <see cref="DateTime"/> with the day of the month set</returns>
+    public static DateTime SetDay(this DateTime dateTime, int dayOfMonth)
+    {
+        if (dayOfMonth is < 1) dayOfMonth = 1;
+        return new DateTime(dateTime.Year, dateTime.Month, dayOfMonth, dateTime.Hour, dateTime.Minute, dateTime.Second, dateTime.Millisecond, dateTime.Kind);
+    }
 }
