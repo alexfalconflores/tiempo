@@ -172,11 +172,11 @@ using Tiempo;
 //Console.WriteLine(date.LastDayOfWeek());
 //Console.WriteLine(date.LastDayOfWeek(DayOfWeek.Monday));
 
-//var date = new DateTime(2005, 1, 2, 23, 55, 0);
-//var date2 = new DateTime(2009, 12, 2, 23, 55, 0);
-//var date3 = new DateTime(2014, 7, 2, 23, 55, 0);
+var date = new DateTime(2005, 1, 2, 23, 55, 0);
+var date2 = new DateTime(2009, 12, 2, 23, 55, 0);
+var date3 = new DateTime(2014, 7, 2, 23, 55, 0);
 
-//Console.WriteLine(date.SetWeek(1));
-//Console.WriteLine(date.SetWeek(1, new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 }));
-//Console.WriteLine(date2.SetWeek(1));
-//Console.WriteLine(date3.SetWeek(52));
+Console.WriteLine(date.SetWeek(1));
+Console.WriteLine(date.SetWeek(1, new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 }));
+Console.WriteLine(date2.SetWeek(1));
+Console.WriteLine(date3.SetWeek(52));
