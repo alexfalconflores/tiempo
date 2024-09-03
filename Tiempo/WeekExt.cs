@@ -224,6 +224,122 @@ public static class WeekExt
         else if (dateTime >= startOfThisYear) return year;
         else return year - 1;
     }
+    /// <summary>
+    /// Get the week of the month of the given date
+    /// </summary>
+    /// <param name="dateTime">The given date</param>
+    /// <param name="weekStartsOn"></param>
+    /// <returns>The week of month</returns>
+    /// <example><code>
+    /// // Which week of the month is 9 November 2017
+    /// var result = new DateTime(2017, 11, 9, 23, 55, 0).GetWeekOfMonth();
+    /// //-> 2
+    /// </code></example>
+    public static int GetWeekOfMonth(this DateTime dateTime, DayOfWeek weekStartsOn = DayOfWeek.Sunday)
+    {
+        var currentDayOfMonth = dateTime.Day;
+        var startWeekDay = dateTime.StartOfMonth().DayOfWeek;
+        var lastDayOfFirstWeek = weekStartsOn - startWeekDay;
+        if (lastDayOfFirstWeek <= 0) lastDayOfFirstWeek += 7;
+        var remainingDaysAfterFirstWeek = currentDayOfMonth - lastDayOfFirstWeek;
+        return (int)Math.Ceiling(remainingDaysAfterFirstWeek / 7.0) + 1;
+    }
+    /// <summary>
+    /// Get the number of calendar weeks a month spans
+    /// <example><code>
+    /// // How many calendar weeks does febreary 2015 span?
+    /// var result = new DateTime(2015, 2, 8, 23, 55, 0).GetWeeksInMonth();
+    /// // -> 4
+    /// 
+    /// // How many calendar weeks does febreary 2015 span, if the week starts on Monday
+    /// var result = new DateTime(2017, 7, 5, 23, 55, 0).GetWeeksInMonth(DayOfWeek.Monday);
+    /// // -> 6
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The given date</param>
+    /// <param name="weekStartsOn"></param>
+    /// <returns>The number of calendar weeks</returns>
+    public static int GetWeeksInMonth(this DateTime dateTime, DayOfWeek weekStartsOn = DayOfWeek.Sunday) => dateTime.LastDayOfMonth().DifferenceInCalendarWeeks(dateTime.StartOfMonth(), weekStartsOn) + 1;
+    /// <summary>
+    /// Get the week number of the year of the given date
+    /// </summary>
+    /// <param name="dateTime">The given date</param>
+    /// <returns>The week number of the year</returns>
+    /// <remarks>
+    /// <example><code>
+    /// // Which week number of the year is 2 September, 2024
+    /// var result = new DateTime(2024, 9, 2, 23, 55, 0).WeekOfYear();
+    /// //-> 36
+    /// </code></example>
+    /// </remarks>
+    public static int WeekOfYear(this DateTime dateTime, DayOfWeek weekStartsOn = DayOfWeek.Sunday)
+    {
+        DateTime jan1 = new(dateTime.Year, 1, 1);
+        DateTime startOfWeek = jan1.StartOfWeek(weekStartsOn);
+        return (dateTime - startOfWeek).Days / 7 + 1;
+    }
+
+    /// <summary>
+    /// Is the given date in the same week as the current date?
+    /// <example><code>
+    /// // If today is 3 September, 2024, is 1 September 2024 in this week?
+    /// var result = new DateTime(2024, 9, 1, 23, 55, 0).IsThisWeek();
+    /// // -> True
+    /// 
+    /// // If today is 3 September, 2024 and week starts with Monday, is 1 September 2024 in this week?
+    /// var result = new DateTime(2024, 9, 1, 23, 55, 0).IsThisWeek(DayOfWeek.Monday);
+    /// // -> False
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The date check</param>
+    /// <param name="weekStartsOn"></param>
+    /// <returns>The date is in this week</returns>
+    public static bool IsThisWeek(this DateTime dateTime, DayOfWeek weekStartsOn = DayOfWeek.Sunday) =>
+        DateTime.Today.IsSameWeek(dateTime, weekStartsOn);
+    /// <summary>
+    /// Return the last day of a week for the given date.
+    /// <example><code>
+    /// // The last day of a week for 1 September 2024 23:55:00
+    /// var result = new DateTime(2024, 9, 1, 23, 55, 0).LastDayOfWeek();
+    /// //-> 9/7/2024 12:00:00 AM
+    /// 
+    /// // The last day of a week for 1 September 2024 23:55:00, if the week starts on Monday
+    /// var result = new DateTime(2024, 9, 1, 23, 55, 0).LastDayOfWeek(DayOfWeek.Monday);
+    /// //-> 9/1/2024 12:00:00 AM
+    /// </code></example>
+    /// </summary>
+    /// <param name="dateTime">The original date</param>
+    /// <param name="weekStartsOn"></param>
+    /// <returns>The last day of a week</returns>
+    public static DateTime LastDayOfWeek(this DateTime dateTime, DayOfWeek weekStartsOn = DayOfWeek.Sunday) =>
+        dateTime.StartOfWeek(weekStartsOn).AddDays(6);
+    /// <summary>
+    /// Set the local week to the given date.
+    /// The exact calculation depends on the values of <see cref="WeekYearOptions.WeekStartsOn"/>
+    /// (which is the index the first day of the week) and <see cref="WeekYearOptions.FirstWeekContainsDate"/>
+    /// (which is the day of Januarym which is always in the first week of the week-numbering year)
+    /// </summary>
+    /// <param name="dateTime">The date to be changed</param>
+    /// <param name="week">The week of the new <see cref="DateTime"/></param>
+    /// <param name="options">An class with options</param>
+    /// <returns>Te new <see cref="DateTime"/> with the local week set</returns>
+    /// <example><code>
+    /// // Set the 1st week to 2 January 2005
+    /// var result = new DateTime(2005, 1, 2, 23, 55, 0).SetWeek(1);
+    /// // -> 12/26/2004 12:00:00 AM
+    /// 
+    /// // Set the 1st week to 2 January 2005, if Monday is the first day of the week and the first week of the year always
+    /// contains 4 January
+    /// var result = new DateTime(2005, 1, 2, 23, 55, 0).SetWeek(1, new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 });
+    /// // -> 1/4/2004 12:00:00 AM
+    /// </code></example>
+    public static DateTime SetWeek(this DateTime dateTime, int week, WeekYearOptions options = null)
+    {
+        week = Math.Max(1, Math.Min(week, 53));
+        options ??= new WeekYearOptions();
+        int diff = (dateTime.GetWeek(options) - week) * 7;
+        return dateTime.AddDays(-diff).Date;
+    }
 }
 
 public class WeekYearOptions
