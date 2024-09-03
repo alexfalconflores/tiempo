@@ -146,6 +146,37 @@ using Tiempo;
 //Console.WriteLine(date.EndOfWeek(DayOfWeek.Monday));
 //Console.WriteLine(date2.EndOfWeek());
 
-var date = new DateTime(2005, 1, 2);
-Console.WriteLine(date.GetWeek());
-Console.WriteLine(date.GetWeek(new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 }));
+//var date = new DateTime(2005, 1, 2);
+//Console.WriteLine(date.GetWeek());
+//Console.WriteLine(date.GetWeek(new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 }));
+
+//var date = new DateTime(2024, 9, 2, 23, 55, 0);
+//Console.WriteLine(date.StartOfMonth());
+
+//var date = new DateTime(2017, 11, 9, 23, 55, 0);
+//Console.WriteLine(date.GetWeekOfMonth());
+
+//var date = new DateTime(2024, 9, 2, 23, 55, 0);
+//Console.WriteLine(date.WeekOfYear());
+
+//var date = new DateTime(2015, 2, 8, 23, 55, 0);
+//var date2 = new DateTime(2017, 7, 5, 23, 55, 0);
+//Console.WriteLine(date.GetWeeksInMonth());
+//Console.WriteLine(date2.GetWeeksInMonth(DayOfWeek.Monday));
+
+//var date = new DateTime(2024, 9, 1, 23, 55, 0);
+//Console.WriteLine(date.IsThisWeek());
+//Console.WriteLine(date.IsThisWeek(DayOfWeek.Monday));
+
+//var date = new DateTime(2024, 9, 1, 23, 55, 0);
+//Console.WriteLine(date.LastDayOfWeek());
+//Console.WriteLine(date.LastDayOfWeek(DayOfWeek.Monday));
+
+//var date = new DateTime(2005, 1, 2, 23, 55, 0);
+//var date2 = new DateTime(2009, 12, 2, 23, 55, 0);
+//var date3 = new DateTime(2014, 7, 2, 23, 55, 0);
+
+//Console.WriteLine(date.SetWeek(1));
+//Console.WriteLine(date.SetWeek(1, new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 }));
+//Console.WriteLine(date2.SetWeek(1));
+//Console.WriteLine(date3.SetWeek(52));
