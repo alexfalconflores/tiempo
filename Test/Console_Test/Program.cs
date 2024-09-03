@@ -1,4 +1,6 @@
-﻿using DateExt;
+﻿using BenchmarkDotNet.Running;
+using Console_Test.Week;
+using Tiempo;
 
 //var date = new DateTime(2024, 8, 31, 10, 0, 0, 0, 0);
 //var nextWednesday = date.NextDay(DayOfWeek.Wednesday);
@@ -100,8 +102,50 @@
 
 //BenchmarkRunner.Run<BusinessDaysBenchmark>();
 
-var date = new DateTime(2024, 9, 1, 6, 0, 0);
-var date2 = DateTime.Today;
+//var date = new DateTime(2024, 9, 1, 6, 0, 0);
+//var date2 = DateTime.Today;
 
-Console.WriteLine(date.SubtractBusinessDays(10));
-Console.WriteLine(date2.SubtractBusinessDays(7));
+//Console.WriteLine(date.SubtractBusinessDays(10));
+//Console.WriteLine(date2.SubtractBusinessDays(7));
+
+//BenchmarkRunner.Run<StartOfWeek>();
+//var date = new DateTime(2024, 10, 3,11, 55, 0);
+//var date = new DateTime(2024, 8, 30,11, 55, 0);
+//var date2 = DateTime.Today;
+
+//Console.WriteLine(date.StartOfWeek());
+//Console.WriteLine(date.StartOfWeek(DayOfWeek.Monday));
+//Console.WriteLine(date.StartOfWeek(DayOfWeek.Monday));
+//Console.WriteLine(date2.StartOfWeek());
+
+//BenchmarkRunner.Run<IsSameWeek>();
+//var date = new DateTime(2024, 9, 2, 11, 55, 0);
+//var dateS = new DateTime(2024, 9, 2, 11, 50, 0);
+//var date2 = new DateTime(2024, 10, 3, 11, 55, 0);
+
+//Console.WriteLine(date.IsSameWeek_2(dateS, DayOfWeek.Monday));
+//Console.WriteLine(date.IsSameWeek_2(date2, DayOfWeek.Monday));
+
+
+//BenchmarkRunner.Run<DifferenceInCalendarWeeks>();
+//var date = new DateTime(2024, 7, 20, 11, 55, 0);
+//var dateS = new DateTime(2024, 7, 5, 11, 50, 0);
+
+//Console.WriteLine(date.DifferenceInCalendarWeeks(dateS));
+//Console.WriteLine(date.DifferenceInCalendarWeeks(dateS, DayOfWeek.Monday));
+
+//var date = new DateTime(2024, 9, 1, 23, 59, 59);
+//var dateS = new DateTime(2024, 9, 28, 0, 0, 0);
+
+//Console.WriteLine(date.DifferenceInWeeks(dateS));
+
+//var date = new DateTime(2024, 9, 2, 11, 55, 0);
+//var date2 = DateTime.Today;
+
+//Console.WriteLine(date.EndOfWeek());
+//Console.WriteLine(date.EndOfWeek(DayOfWeek.Monday));
+//Console.WriteLine(date2.EndOfWeek());
+
+var date = new DateTime(2005, 1, 2);
+Console.WriteLine(date.GetWeek());
+Console.WriteLine(date.GetWeek(new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 }));

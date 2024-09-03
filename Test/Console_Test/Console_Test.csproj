@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DateExt\DateExt.csproj" />
+    <ProjectReference Include="..\..\Tiempo\Tiempo.csproj" />
   </ItemGroup>
 
 </Project>

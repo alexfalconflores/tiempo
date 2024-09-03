@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DateExt;
+namespace Tiempo;
 
 public static class WeekExt
 {
