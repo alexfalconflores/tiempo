@@ -6,6 +6,10 @@
     <img src="https://raw.githubusercontent.com/alexfalconflores/alexfalconflores/main/img/nuget-banner.svg" height=20 alt="Go to Nuget"/>
 </a>
 
+<a href="#installation--">Installation 📦</a> | 
+<a href="#documentation-">Documentation 📖</a> |
+<a href="#documentation-">Support ⭐</a>
+
 📅 Tiempo is a modern, lightweight library for date and time manipulation in C#. Tiempo provides a simple and consistent API that makes it easy to work with dates in any type of .NET application. From parsing and formatting dates to performing complex calculations and managing time zones, Tiempo provides you with all the tools you need to handle dates and times accurately and efficiently in your C# projects.
 
 ## Installation 📦
@@ -89,6 +93,6 @@ dotnet add package Tiempo --version 0.0.3
     - [StartOfMonth](docs/month.md#startofmonth)
     - [LastDayOfMonth](docs/month.md#lastdayofmonth)
 
-## Support ;D
+## Support ⭐
 I am working to add more function. 
 I would appreciate if you could give it a star⭐, thank you very much.. 🙏
