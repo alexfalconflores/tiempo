@@ -2,26 +2,32 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<LangVersion>12.0</LangVersion>
-	</PropertyGroup>
-	<!-- NuGet package info -->
-	<PropertyGroup>
-		<Title>Tiempo</Title>
-		<Description>Tiempo is a modern, lightweight library for date and time manipulation in C#. Tiempo provides a simple and consistent API that makes it easy to work with dates in any type of .NET application. 
-From parsing and formatting dates to performing complex calculations and managing time zones, Tiempo provides you with all the tools you need to handle dates and times accurately and efficiently in your C# projects.</Description>
+		<RootNamespace>Tiempo</RootNamespace>
+		<AssemblyName>Tiempo</AssemblyName>
+		<OutputType>Library</OutputType>
+		<FileVersion>0.0.4.0</FileVersion>
+		<AssemblyVersion>0.0.4.0</AssemblyVersion>
+		<!-- NuGet package info -->
 		<PackageId>Tiempo</PackageId>
+		<Title>Tiempo</Title>
+		<Version>0.0.4</Version>
+		<Authors>Alex Falcon Flores</Authors>
+		<Company>Alex Falcon Flores</Company>
+		<Product>Tiempo</Product>
+		<Description>
+			📅 Tiempo is a modern, lightweight library for date and time manipulation in C#. Tiempo provides a simple and consistent API that makes it easy to work with dates in any type of .NET application.
+			From parsing and formatting dates to performing complex calculations and managing time zones, Tiempo provides you with all the tools you need to handle dates and times accurately and efficiently in your C# projects.
+		</Description>
+		<Copyright>© 2024 Alex Stefano Falcon Flores.</Copyright>
+		<PackageProjectUrl>https://github.com/alexfalconflores/tiempo</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/alexfalconflores/tiempo</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>dotnet; net; netcore; netstandard; library; uwp; winform; winui3; winappsdk; utility; toolkit; csharp; extensions; universal; windows; helper; date; datetime; time; format; console; wpf; asp; aspnet; api</PackageTags>
+		<PackageReleaseNotes>🔨 Fixed the problem of why it did not recognize the reference.</PackageReleaseNotes>
+		<PackageIcon>Assets\icon.png</PackageIcon>
 		<PackageReadmeFile>Docs\readme.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageProjectUrl>https://github.com/alexfalconflores/tiempo</PackageProjectUrl>
-		<PackageIcon>Assets\icon.png</PackageIcon>
-		<PackageVersion>0.0.3</PackageVersion>
-		<Authors>Alex Falcon Flores</Authors>
-		<Owners>Alex Falcon Flores</Owners>
-		<PackageTags>dotnet net netcore netstandard library uwp winform winui3 winappsdk utility toolkit csharp extensions universal windows helper date datetime time format console wpf asp api</PackageTags>
-		<DevelopmentDependency>true</DevelopmentDependency>
-		<Copyright>Copyright 2024</Copyright>
-		<IncludeSymbols>true</IncludeSymbols>
-		<IncludeSource>true</IncludeSource>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="PolySharp" Version="1.14.1">
@@ -30,7 +36,7 @@ From parsing and formatting dates to performing complex calculations and managin
 		</PackageReference>
 	</ItemGroup>
 	<ItemGroup>
-		<None Include="Assets\icon.png" PackagePath="Assets\" Pack="true" />
-		<None Include="Docs\readme.md" PackagePath="Docs\" Pack="true" />
+		<None Include="Assets\icon.png" PackagePath="Assets\" Pack="True" />
+		<None Include="Docs\readme.md" PackagePath="Docs\" Pack="True" />
 	</ItemGroup>
 </Project>
