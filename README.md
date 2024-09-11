@@ -15,7 +15,7 @@
 ## Installation 📦
 This project is available as a [NuGet package](https://www.nuget.org/packages/Tiempo). You can install it using the NuGet Package Console window:
 ```bash
-dotnet add package Tiempo --version 0.0.3
+dotnet add package Tiempo --version 0.0.4
 ```
 
 ## Documentation 📖
