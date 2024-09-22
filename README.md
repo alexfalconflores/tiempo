@@ -15,7 +15,7 @@
 ## Installation 📦
 This project is available as a [NuGet package](https://www.nuget.org/packages/Tiempo). You can install it using the NuGet Package Console window:
 ```bash
-dotnet add package Tiempo --version 0.0.4
+dotnet add package Tiempo --version 1.5.0
 ```
 
 ## Documentation 📖
@@ -92,6 +92,17 @@ dotnet add package Tiempo --version 0.0.4
 - [Month](docs/month.md)
     - [StartOfMonth](docs/month.md#startofmonth)
     - [LastDayOfMonth](docs/month.md#lastdayofmonth)
+    - [DifferenceInCalendarMonths](docs/month.md#differenceincalendarmonths)`new`
+    - [DifferenceInMonths](docs/month.md#differenceinmonths)`new`
+    - [EachWeekendOfMonth](docs/month.md#eachweekendofmonth)`new`
+    - [EndOfMonth](docs/month.md#endofmonth)`new`
+    - [GetDaysInMonth](docs/month.md#getdaysinmonth)`new`
+    - [IsFirstDayOfMonth](docs/month.md#isfirstdayofmonth)`new`
+    - [IsLastDayOfMonth](docs/month.md#islastdayofmonth)`new`
+    - [IsSameMonth](docs/month.md#issamemonth)`new`
+    - [IsThisMonth](docs/month.md#isthismonth)`new`
+    - [SetMonth](docs/month.md#setmonth)`new`
+    - [SubMonths](docs/month.md#submonths)`new`
 
 ## Support ⭐
 I am working to add more function. 
