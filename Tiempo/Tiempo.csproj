@@ -5,12 +5,12 @@
 		<RootNamespace>Tiempo</RootNamespace>
 		<AssemblyName>Tiempo</AssemblyName>
 		<OutputType>Library</OutputType>
-		<FileVersion>0.0.4.0</FileVersion>
-		<AssemblyVersion>0.0.4.0</AssemblyVersion>
+		<FileVersion>1.5.0.0</FileVersion>
+		<AssemblyVersion>1.5.0.0</AssemblyVersion>
 		<!-- NuGet package info -->
 		<PackageId>Tiempo</PackageId>
 		<Title>Tiempo</Title>
-		<Version>0.0.4</Version>
+		<Version>1.5.0</Version>
 		<Authors>Alex Falcon Flores</Authors>
 		<Company>Alex Falcon Flores</Company>
 		<Product>Tiempo</Product>
@@ -23,7 +23,7 @@
 		<RepositoryUrl>https://github.com/alexfalconflores/tiempo</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>dotnet; net; netcore; netstandard; library; uwp; winform; winui3; winappsdk; utility; toolkit; csharp; extensions; universal; windows; helper; date; datetime; time; format; console; wpf; asp; aspnet; api</PackageTags>
-		<PackageReleaseNotes>🔨 Fixed the problem of why it did not recognize the reference.</PackageReleaseNotes>
+		<PackageReleaseNotes>➕Added more functions for months</PackageReleaseNotes>
 		<PackageIcon>Assets\icon.png</PackageIcon>
 		<PackageReadmeFile>Docs\readme.md</PackageReadmeFile>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
