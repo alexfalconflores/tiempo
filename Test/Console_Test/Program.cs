@@ -172,11 +172,34 @@ using Tiempo;
 //Console.WriteLine(date.LastDayOfWeek());
 //Console.WriteLine(date.LastDayOfWeek(DayOfWeek.Monday));
 
-var date = new DateTime(2005, 1, 2, 23, 55, 0);
-var date2 = new DateTime(2009, 12, 2, 23, 55, 0);
-var date3 = new DateTime(2014, 7, 2, 23, 55, 0);
+//var date = new DateTime(2005, 1, 2, 23, 55, 0);
+//var date2 = new DateTime(2009, 12, 2, 23, 55, 0);
+//var date3 = new DateTime(2014, 7, 2, 23, 55, 0);
 
-Console.WriteLine(date.SetWeek(1));
-Console.WriteLine(date.SetWeek(1, new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 }));
-Console.WriteLine(date2.SetWeek(1));
-Console.WriteLine(date3.SetWeek(52));
+//Console.WriteLine(date.SetWeek(1));
+//Console.WriteLine(date.SetWeek(1, new WeekYearOptions() { WeekStartsOn = DayOfWeek.Monday, FirstWeekContainsDate = 4 }));
+//Console.WriteLine(date2.SetWeek(1));
+//Console.WriteLine(date3.SetWeek(52));
+
+//DateTime date1 = new DateTime(2013, 9, 1);
+//DateTime date2 = new DateTime(2014, 9, 30);
+
+//int result = date1.DifferenceInCalendarMonths(date2);
+//Console.WriteLine(result);  // Output: 8
+
+//DateTime date = new DateTime(2014, 2, 28);
+//Console.WriteLine(date.IsLastDayOfMonth());
+
+//DateTime date1 = new DateTime(2021, 6, 28);
+//DateTime date2 = new DateTime(2021, 1, 31);
+
+//Console.WriteLine(date1.DifferenceInMonths(date2));
+
+//var result = new DateTime(2022, 2, 1).EachWeekendOfMonth();
+//foreach (var item in result)
+//{
+//    Console.WriteLine(item);
+//}
+
+var result = new DateTime(2001, 7, 16, 11, 55, 0);
+Console.WriteLine(result.SubMonths(1));
